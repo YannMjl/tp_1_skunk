@@ -2,24 +2,24 @@
 
 ## Getting started
 
-  ** Domain Model Concepts:
-  ** Score
-  ** Dice
-  ** roll
-  ** player
-  ** Series
-  ** Skunk
-  ** penalty
-  ** chip
-  ** Kitty
-  ** deuce
-  ** accumulated score
-  ** winner
-  ** goal
-  ** red chips
-  ** blue chips
-  ** game
-  ** Die
+  Domain Model Concepts:
+  * ** Score
+  * ** Dice
+  * ** roll
+  * ** player
+  * ** Series
+  * ** Skunk
+  * ** penalty
+  * ** chip
+  * ** Kitty
+  * ** deuce
+  * ** accumulated score
+  * ** winner
+  * ** goal
+  * ** red chips
+  * ** blue chips
+  * ** game
+  * ** Die
   
 > Skunk Domain class candidate:
 	
