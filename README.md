@@ -14,11 +14,11 @@ Note that I'll use a different vocabulary for some of the Skunk concepts (domain
 
 Vocabulary:
 
-Box RulesMy   Terminology
-Shake/Roll    Roll (== throw dice once)
-Series        Turn (== multiple Rolls until Skunk or decline to roll)
-Game          Game (same as Box: == multiple Turns until winner)
-----          Tournament (== one or more Games, each earning chips)
+* Box RulesMy   Terminology
+* Shake/Roll    Roll (== throw dice once)
+* Series        Turn (== multiple Rolls until Skunk or decline to roll)
+* Game          Game (same as Box: == multiple Turns until winner)
+* ----          Tournament (== one or more Games, each earning chips)
 
 Images of this box and its cover are posted at the end of this document. The following rules are repeat the rules from inside the box cover.
 
