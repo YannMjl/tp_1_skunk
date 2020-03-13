@@ -6,7 +6,7 @@
 
 This document describes the board game Skunk. Assume that you are implementing a computer program to allow two or more human players to play Skunk against one another, with the computer keeping score and enforcing the rules of the game.Skunk is a variant of Pig, which itself is an instance of a "press your luck" or "jeopardy" dice game. 
 
->> Here are some links:https://boardgamegeek.com/boardgame/3425/skunkhttps://en.wikipedia.org/wiki/Pig_(dice_game)
+> Here are some links:https://boardgamegeek.com/boardgame/3425/skunkhttps://en.wikipedia.org/wiki/Pig_(dice_game)
 
 The following rules to use for your Skunk implementation are copied verbatim from a 1950's commercial box version sold by the Minneapolis company Schaper Manufacturing. Note that an end goal of Skunk is to win the most chips after playing multiple games (== a tournament, as described below).
 
