@@ -22,7 +22,7 @@ public class SkunkDomain
 	{
 		this.skunkUI = ui;
 		this.ui = ui; // hide behind the interface UI
-		
+
 		this.playerNames = new String[20];
 		this.players = new ArrayList<Player>();
 		this.skunkDice = new Dice();
@@ -69,8 +69,7 @@ public class SkunkDomain
 				}
 				else if (skunkDice.getLastRoll() == 3)
 				{
-					ui.println(
-							"Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
+					ui.println("Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
 					scoreRoll(3);
 					wantsToRoll = false;
 					break;
@@ -128,7 +127,7 @@ public class SkunkDomain
 
 		ui.println("Last turn for all...");
 
-		for (int i = activePlayerIndex, count = 0; count < numberOfPlayers-1; i = (i++) % numberOfPlayers, count++)
+		for (int i = activePlayerIndex, count = 0; count < numberOfPlayers - 1; i = (i++) % numberOfPlayers, count++)
 		{
 			ui.println("Last round for player " + playerNames[activePlayerIndex] + "...");
 			activePlayer.setTurnScore(0);
@@ -150,8 +149,7 @@ public class SkunkDomain
 				}
 				else if (skunkDice.getLastRoll() == 3)
 				{
-					ui.println(
-							"Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
+					ui.println("Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
 					scoreRoll(1);
 					wantsToRoll = false;
 
@@ -206,8 +204,7 @@ public class SkunkDomain
 			}
 		}
 
-		ui.println(
-				"Round winner is " + playerNames[winner] + " with score of " + players.get(winner).getRoundScore());
+		ui.println("Round winner is " + playerNames[winner] + " with score of " + players.get(winner).getRoundScore());
 		players.get(winner).setNumberChips(players.get(winner).getNumberChips() + kitty);
 		ui.println("\nRound winner earns " + kitty + ", finishing with " + players.get(winner).getNumberChips());
 
@@ -225,7 +222,7 @@ public class SkunkDomain
 		return true;
 	}
 
-	private void scoreRoll(int chipsLost)			//refactored redundant loop yeah
+	private void scoreRoll(int chipsLost) // refactored redundant loop yeah
 	{
 		kitty += 4;
 		activePlayer.setNumberChips(activePlayer.getNumberChips() - 4);

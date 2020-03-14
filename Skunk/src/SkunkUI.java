@@ -27,13 +27,13 @@ public class SkunkUI implements UI
 	public void print(String toPrint)
 	{
 		StdOut.print(toPrint);
-		
+
 	}
 
 	public void println(String toPrint)
 	{
 		StdOut.println(toPrint);
-		
+
 	}
 
 }

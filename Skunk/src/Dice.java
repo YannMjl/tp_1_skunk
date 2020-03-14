@@ -83,7 +83,7 @@ public class Dice
 	{
 		this.die2 = d;
 	}
-	
+
 	public static final int NUM_TRIALS = 360;
 
 	public static void main(String[] args)

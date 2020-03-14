@@ -78,6 +78,4 @@ public class Player
 		return this.roundScore;
 	}
 
-
-
 }
