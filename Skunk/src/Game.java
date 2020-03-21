@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import edu.princeton.cs.introcs.*;
 
-public class SkunkDomain
+public class Game
 {
 	public SkunkUI skunkUI;
 	public UI ui;
@@ -18,11 +18,10 @@ public class SkunkDomain
 
 	public Dice skunkDice;
 
-	public SkunkDomain(SkunkUI ui)
+	public Game(SkunkUI ui)
 	{
 		this.skunkUI = ui;
-		this.ui = ui; // hide behind the interface UI
-
+		this.ui = ui; 
 		this.playerNames = new String[20];
 		this.players = new ArrayList<Player>();
 		this.skunkDice = new Dice();
@@ -32,9 +31,10 @@ public class SkunkDomain
 
 	public boolean run()
 	{
-		ui.println("Welcome to Skunk:\n");
+		ui.println("\n Welcome to Skunk App Game!");
+		ui.println("`````````````````````````````````````````\n");
 
-		String numberPlayersString = skunkUI.promptReadAndReturn("How many players?");
+		String numberPlayersString = skunkUI.promptReadAndReturn("How many players ?");
 		this.numberOfPlayers = Integer.parseInt(numberPlayersString);
 
 		for (int playerNumber = 0; playerNumber < numberOfPlayers; playerNumber++)
@@ -46,12 +46,12 @@ public class SkunkDomain
 		activePlayerIndex = 0;
 		activePlayer = players.get(activePlayerIndex);
 
-		ui.println("Starting game...\n");
+		ui.println("\n Starting game...\n");
 		boolean gameNotOver = true;
 
 		while (gameNotOver)
 		{
-			ui.println("Next player is " + playerNames[activePlayerIndex] + ".");
+			ui.println("Next player is: " + playerNames[activePlayerIndex] + ".");
 			String wantsToRollStr = ui.promptReadAndReturn("Roll? [true or false]");
 			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
 			activePlayer.setTurnScore(0);
@@ -87,8 +87,7 @@ public class SkunkDomain
 
 				activePlayer.setRollScore(skunkDice.getLastRoll());
 				activePlayer.setTurnScore(activePlayer.getTurnScore() + skunkDice.getLastRoll());
-				ui.println(
-						"Roll of " + skunkDice.toString() + ", gives new turn score of " + activePlayer.getTurnScore());
+				ui.println("Roll of " + skunkDice.toString() + ", gives new turn score of " + activePlayer.getTurnScore());
 
 				wantsToRollStr = ui.promptReadAndReturn("Roll again? [true or false]");
 				wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
@@ -107,13 +106,12 @@ public class SkunkDomain
 
 			ui.println("Scoreboard: ");
 			ui.println("kitty has " + kitty);
-			ui.println("player name -- turn score -- round score -- chips");
+			ui.println("player name - turn score - round score - chips");
 			ui.println("-----------------------");
 
 			for (int i = 0; i < numberOfPlayers; i++)
 			{
-				ui.println(playerNames[i] + " -- " + players.get(i).turnScore + " -- " + players.get(i).roundScore
-						+ " -- " + players.get(i).getNumberChips());
+				ui.println(playerNames[i] + " ---- " + players.get(i).turnScore + " ---- " + players.get(i).roundScore + " ---- " + players.get(i).getNumberChips());
 			}
 			ui.println("-----------------------");
 
@@ -123,7 +121,6 @@ public class SkunkDomain
 			activePlayer = players.get(activePlayerIndex);
 
 		}
-		// last round: everyone but last activePlayer gets another shot
 
 		ui.println("Last turn for all...");
 
@@ -163,18 +160,17 @@ public class SkunkDomain
 				else
 				{
 					activePlayer.setTurnScore(activePlayer.getRollScore() + skunkDice.getLastRoll());
-					ui.println("Roll of " + skunkDice.toString() + ", giving new turn score of "
-							+ activePlayer.getTurnScore());
+					ui.println("Roll of " + skunkDice.toString() + ", giving new turn score of " + activePlayer.getTurnScore());
 
 					ui.println("Scoreboard: ");
-					ui.println("kitty has " + kitty);
-					ui.println("player name -- turn score -- round score -- total chips");
+					ui.println("kitty has: " + kitty);
+					ui.println("player name - turn score - round score - total chips");
 					ui.println("-----------------------");
 
 					for (int pNumber = 0; pNumber < numberOfPlayers; pNumber++)
 					{
-						ui.println(playerNames[pNumber] + " -- " + players.get(pNumber).turnScore + " -- "
-								+ players.get(pNumber).roundScore + " -- " + players.get(pNumber).getNumberChips());
+						ui.println(playerNames[pNumber] + " -- " + players.get(pNumber).turnScore + " -------- "
+								+ players.get(pNumber).roundScore + " -------- " + players.get(pNumber).getNumberChips());
 					}
 					ui.println("-----------------------");
 
@@ -185,8 +181,7 @@ public class SkunkDomain
 			}
 
 			activePlayer.setTurnScore(activePlayer.getRollScore() + skunkDice.getLastRoll());
-			ui.println("Last roll of " + skunkDice.toString() + ", giving final round score of "
-					+ activePlayer.getRollScore());
+			ui.println("Last roll of " + skunkDice.toString() + ", giving final round score of " + activePlayer.getRollScore());
 
 		}
 
@@ -209,31 +204,23 @@ public class SkunkDomain
 		ui.println("\nRound winner earns " + kitty + ", finishing with " + players.get(winner).getNumberChips());
 
 		ui.println("\nFinal scoreboard for this round:");
-		ui.println("player name -- round score -- total chips");
+		ui.println("player name - round score - total chips");
 		ui.println("-----------------------");
 
 		for (int pNumber = 0; pNumber < numberOfPlayers; pNumber++)
 		{
-			ui.println(playerNames[pNumber] + " -- " + players.get(pNumber).roundScore + " -- "
-					+ players.get(pNumber).getNumberChips());
+			ui.println(playerNames[pNumber] + " ----- " + players.get(pNumber).roundScore + " ----- " + players.get(pNumber).getNumberChips());
 		}
 
 		ui.println("-----------------------");
 		return true;
 	}
 
-	private void scoreRoll(int chipsLost) // refactored redundant loop yeah
+	private void scoreRoll(int chipsLost) 
 	{
 		kitty += 4;
 		activePlayer.setNumberChips(activePlayer.getNumberChips() - 4);
 		activePlayer.setTurnScore(0);
 		activePlayer.setRoundScore(0);
 	}
-
-	public static void main(String[] args)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
 }
