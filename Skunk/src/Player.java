@@ -4,7 +4,7 @@ public class Player
 	public int rollScore;
 	public int turnScore;
 	public int roundScore;
-	public int gameScore; 
+	public int gameScore;
 	public int numberChips;
 
 	public Player()
@@ -13,7 +13,7 @@ public class Player
 		this.turnScore = 0;
 		this.roundScore = 0;
 		this.gameScore = 0;
-		this.numberChips = 50; 
+		this.numberChips = 50;
 	}
 
 	public Player(int startingChipsPerPlayer)

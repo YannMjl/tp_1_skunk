@@ -2,11 +2,9 @@ import edu.princeton.cs.introcs.StdOut;
 
 public class Dice
 {
-
 	private int lastRoll;
 	private Die die1;
 	private Die die2;
-
 
 	public Dice()
 	{
@@ -15,7 +13,7 @@ public class Dice
 		this.roll();
 	}
 
-	public Dice(Die die1, Die die2) 
+	public Dice(Die die1, Die die2)
 	{
 		this.die1 = die1;
 		this.die2 = die2;
@@ -39,7 +37,7 @@ public class Dice
 	}
 
 	public Die getDie1()
-	{		
+	{
 		return this.die1;
 	}
 

@@ -24,13 +24,13 @@ public class Die
 
 	}
 
-	public int getLastRoll() 
+	public int getLastRoll()
 	{
 
 		return this.lastRoll;
 	}
 
-	public void roll() 
+	public void roll()
 	{
 		if (!predictible)
 			this.lastRoll = (int) (Math.random() * 6 + 1);
@@ -40,7 +40,7 @@ public class Die
 			index_of_next_roll++;
 			if (index_of_next_roll >= this.rolls.length)
 			{
-				index_of_next_roll = 0; 
+				index_of_next_roll = 0;
 			}
 		}
 	}
