@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="SkunkDomain" project="Skunk" file="/Skunk/src/SkunkDomain.java" binary="false" 
+  <class id="3" language="java" name="Game" project="Skunk" file="/Skunk/src/Game.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="638" y="397"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -65,91 +65,131 @@
     </display>  
   </class>  
   <association id="8">    
-    <bendpoint x="815" y="163"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="9" name="skunkDomain"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="11">    
-    <bendpoint x="574" y="163"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="12" name="skunkUI"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
-    <bendpoint x="189" y="437"/>    
+    <bendpoint x="461" y="423"/>    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="15" name="die1"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+      <attribute id="9" name="die2">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="17">    
+  <association id="11">    
+    <bendpoint x="637" y="603"/>    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="18" name="skunkDice"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="20">    
-    <bendpoint x="867" y="431"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="21" name="players"/>      
-      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+      <attribute id="12" name="activePlayer">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="23">    
-    <bendpoint x="461" y="423"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="24" name="die2"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
+  <association id="14">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="27" name="skunkUI"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
+      <attribute id="15" name="skunkUI">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="29">    
+  <association id="17">    
+    <bendpoint x="574" y="163"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="18" name="skunkUI">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="30" name="skunkDomain"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+      <attribute id="21" name="skunkDomain">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="32">    
+  <association id="23">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="24" name="skunkDice">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="26">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <association id="33">    
+  <association id="27">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="34" name="ui"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
+      <attribute id="28" name="ui">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="30">    
+    <bendpoint x="189" y="437"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="31" name="die1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <bendpoint x="815" y="163"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="34" name="skunkDomain">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="36">    
-    <bendpoint x="637" y="603"/>    
+    <bendpoint x="867" y="431"/>    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="37" name="activePlayer"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
+      <attribute id="37" name="players">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
