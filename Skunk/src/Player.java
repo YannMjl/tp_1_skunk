@@ -13,7 +13,7 @@ public class Player
 		this.turnScore = 0;
 		this.roundScore = 0;
 		this.gameScore = 0;
-		this.numberChips = 50;
+		this.numberChips = 10;
 	}
 
 	public Player(int startingChipsPerPlayer)

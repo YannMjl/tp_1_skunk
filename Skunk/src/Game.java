@@ -41,7 +41,7 @@ public class Game
 		{
 			ui.print("Please enter the name of player " + (playerNumber + 1) + ": ");
 			playerNames[playerNumber] = StdIn.readLine();
-			this.players.add(new Player(50));
+			this.players.add(new Player(10));
 		}
 		activePlayerIndex = 0;
 		activePlayer = players.get(activePlayerIndex);
