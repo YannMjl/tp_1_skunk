@@ -1,13 +1,11 @@
 
-public class SkunkApp
-{
+public class SkunkApp {
 	public SkunkUI skunkUI;
 	public Game game;
 	public int numberOfPlayers;
 	public String[] playerNames;
 
-	public SkunkApp()
-	{
+	public SkunkApp() {
 		skunkUI = new SkunkUI();
 		game = new Game(skunkUI);
 		skunkUI.setDomain(game);
@@ -15,13 +13,11 @@ public class SkunkApp
 		this.playerNames = new String[20];
 	}
 
-	public boolean run()
-	{
+	public boolean run() {
 		return game.run();
 	}
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		new SkunkApp().run();
 	}
 
