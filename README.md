@@ -41,7 +41,7 @@ The first player to accumulate a total of 100 or more points can continue to sco
 ## Author
 
 * **[Yann Mulonda](https://github.com/YannMjl)**
-* **[Kedir Bedaso](https://github.com/YannMjl)**
+* **[Kedir Bedaso](https://github.com/beda2280)**
 
 ## Contributing
 
