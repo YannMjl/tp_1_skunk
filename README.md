@@ -30,9 +30,7 @@ The object of the game is to accumulate a score of 100 points or more. A score i
 
 ### PENALTIES:
 
-A skunk in any series voids the score for that series only and draws a penalty of 1 chip placed in the "kitty," and loss of dice.
-
-A skunk and a deuce voids the score for that series only and draws a penalty of 2 chips placed in the "kitty," and loss of dice.
+A skunk in any series voids the score for that series only and draws a penalty of 1 chip placed in the "kitty," and loss of dice.A skunk and a deuce voids the score for that series only and draws a penalty of 2 chips placed in the "kitty," and loss of dice.
 
 TWO skunks void the ENTIRE accumulated score and draws a penalty of 4 chips placed in the "kitty," and loss of dice. Player must again start to score from scratch.
 
@@ -40,34 +38,33 @@ Any number can play. [Assume at least two players!] The suggested number of chip
 
 The first player to accumulate a total of 100 or more points can continue to score as many points over 100 as he believes is needed to win. When he decides to stop, his total score is the “goal.” Each succeeding player receives one more chance to better the goal and end the game.The winner of each game collects all chips in "kitty" and in addition five chips from each losing player or 10 chips from any player without a score.
 
-## Domain Model
+## Author
 
-  Domain Model Concepts:
-  * Score
-  * Dice
-  * roll
-  * player
-  * Series
-  * Skunk
-  * penalty
-  * chip
-  * Kitty
-  * deuce
-  * accumulated score
-  * winner
-  * goal
-  * red chips
-  * blue chips
-  * game
-  * Die
-  
-> Skunk Domain class candidate:
-	
-	Tournament: one or more games..
-	
-	Game: one or more turns , each earnings points for a player, ending when one or more players>= 100 points
-	
-	Turn: zero or more rolls by a player, ending with decline or skunk, earning the player TurnScore and possibly  a TurnPenalty(chips)
-	
-	Roll: one throw of the dice by a player, with a point value that's added to the current TurnScore
-	
+* **[Yann Mulonda](https://github.com/YannMjl)**
+* **[Kedir Bedaso](https://github.com/YannMjl)**
+
+## Contributing
+
+This project has one branch: 
+* **dev** → development environment
+* **test** → test environment
+* **master** → production environment
+
+Environments are setup in the following way:
+* **dev environment → Continuous Integration/Continuous Deployment**
+* **test environment → Continuous Integration/Continuous Deployment**
+* **production environment → Continuous Integration/Continuous Delivery**
+
+**Changes can be made in the dev branch only then merged to test, then master**
+Ideally, After a team member is done writing code (fixing bugs, adding features, removing/editing or adding stuff, etc) locally on dev. The team member will push their commits to remote dev. Then create a pull request to test branch when all developement is done. Code review and test will be perfom from test branch. After succefuuly validating everihting. the team will then create a pull request to master when everything is ready for production.
+
+```bash
+git clone https://github.com/YannMjl/tp_1_skunk
+cd tp_1_skunk
+git checkout dev
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE)© [Yann Mulonda](https://github.com/YannMjl) file for details.
+
