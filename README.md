@@ -30,9 +30,7 @@ The object of the game is to accumulate a score of 100 points or more. A score i
 
 ### PENALTIES:
 
-A skunk in any series voids the score for that series only and draws a penalty of 1 chip placed in the "kitty," and loss of dice.
-
-A skunk and a deuce voids the score for that series only and draws a penalty of 2 chips placed in the "kitty," and loss of dice.
+A skunk in any series voids the score for that series only and draws a penalty of 1 chip placed in the "kitty," and loss of dice.A skunk and a deuce voids the score for that series only and draws a penalty of 2 chips placed in the "kitty," and loss of dice.
 
 TWO skunks void the ENTIRE accumulated score and draws a penalty of 4 chips placed in the "kitty," and loss of dice. Player must again start to score from scratch.
 
