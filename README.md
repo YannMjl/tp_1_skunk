@@ -40,34 +40,11 @@ Any number can play. [Assume at least two players!] The suggested number of chip
 
 The first player to accumulate a total of 100 or more points can continue to score as many points over 100 as he believes is needed to win. When he decides to stop, his total score is the “goal.” Each succeeding player receives one more chance to better the goal and end the game.The winner of each game collects all chips in "kitty" and in addition five chips from each losing player or 10 chips from any player without a score.
 
-## Domain Model
+## Author
 
-  Domain Model Concepts:
-  * Score
-  * Dice
-  * roll
-  * player
-  * Series
-  * Skunk
-  * penalty
-  * chip
-  * Kitty
-  * deuce
-  * accumulated score
-  * winner
-  * goal
-  * red chips
-  * blue chips
-  * game
-  * Die
-  
-> Skunk Domain class candidate:
-	
-	Tournament: one or more games..
-	
-	Game: one or more turns , each earnings points for a player, ending when one or more players>= 100 points
-	
-	Turn: zero or more rolls by a player, ending with decline or skunk, earning the player TurnScore and possibly  a TurnPenalty(chips)
-	
-	Roll: one throw of the dice by a player, with a point value that's added to the current TurnScore
-	
+* **[Yann Mulonda](https://github.com/YannMjl)**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE)© [Yann Mulonda](https://github.com/YannMjl) file for details.
+
