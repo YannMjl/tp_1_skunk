@@ -26,20 +26,42 @@ public class Game {
 		this.wantsToQuit = false;
 		this.oneMoreRoll = false;
 	}
+	
+//	everything is packed inside the run method. This practice makes the code hard to read and understand
+//	and even very hard to debug. 
+//	The run method have way to many tasks, does many things and has so many responsibilities. 
+//	To improve its legibility and structure; I'm going to create methods that are easy to read, 
+//	well structure and perform one task. 
+	
+//	this method will get the number of players and pass them to other method when needed.
+	public int getNumberOfPlayers() 
+	{
+		String numberPlayersString = skunkUI.promptReadAndReturn("How many players?");
+		this.numberOfPlayers = Integer.parseInt(numberPlayersString);
+		
+		return this.numberOfPlayers;
+	}
+	
+//	this method getPlayersNames and will pass them to the run method
+	public void getPlayersNames()
+	{
+		int numberOfPlayers = getNumberOfPlayers();
+
+		for (int playerNumber = 0; playerNumber < numberOfPlayers; playerNumber++)
+		{
+			ui.print("Enter name of player " + (playerNumber + 1) + ": ");
+			playerNames[playerNumber] = StdIn.readLine();
+			this.players.add(new Player(50));
+		}
+	}
 
 	public boolean run() {
 		ui.println("\n Welcome to Skunk App Game!");
 		ui.println("*--------------------------*\n");
 
-		String numberPlayersString = skunkUI
-				.promptReadAndReturn("Please enter the number of players. How many players ?");
-		this.numberOfPlayers = Integer.parseInt(numberPlayersString);
-
-		for (int playerNumber = 0; playerNumber < numberOfPlayers; playerNumber++) {
-			ui.print("Please enter the name of player " + (playerNumber + 1) + ": ");
-			playerNames[playerNumber] = StdIn.readLine();
-			this.players.add(new Player(50));
-		}
+		// getting players info before the game begin
+		getPlayersNames();
+			
 		activePlayerIndex = 0;
 		activePlayer = players.get(activePlayerIndex);
 
