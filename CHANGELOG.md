@@ -11,3 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial version of the of the skunk 
 - working just fine but major refactor and restructure to be made
+
+## [Skunk 1.0.1] - April 19, 2020
+
+### Added
+
+- Started refactoring on game class and run method 
