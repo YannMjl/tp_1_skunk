@@ -68,10 +68,18 @@ public class Game {
 //  get player choice to display turn score and score board
 	public boolean showScore()
 	{
-		String wantsToDisplayStr = ui.promptReadAndReturn("Do you want to see the turn score and score board? y or n");
+		String wantsToDisplayStr = ui.promptReadAndReturn("Show the turn score and score board? y or n");
 		boolean showscore = 'y' == wantsToDisplayStr.toLowerCase().charAt(0);
 		
 		return showscore;
+	}
+	
+//	set score roll
+	private void scoreRoll(int chipsLost) {
+		kitty += 4;
+		activePlayer.setNumberChips(activePlayer.getNumberChips() - 4);
+		activePlayer.setTurnScore(0);
+		activePlayer.setRoundScore(0);
 	}
 	
 //	display a turn result
@@ -263,10 +271,4 @@ public class Game {
 		return true;
 	}
 
-	private void scoreRoll(int chipsLost) {
-		kitty += 4;
-		activePlayer.setNumberChips(activePlayer.getNumberChips() - 4);
-		activePlayer.setTurnScore(0);
-		activePlayer.setRoundScore(0);
-	}
 }
