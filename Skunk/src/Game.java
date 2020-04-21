@@ -55,7 +55,7 @@ public class Game {
 		}
 	}
 	
-//  get player response to play or not
+//  get player choice to roll the dice or not
 	public boolean getPlayerChoice()
 	{
 		String wantsToRollStr = ui.promptReadAndReturn("Would you like to roll the dice? y or n");
@@ -65,10 +65,19 @@ public class Game {
 
 	}
 	
+//  get player choice to display turn score and score board
+	public boolean showScore()
+	{
+		String wantsToDisplayStr = ui.promptReadAndReturn("Do you want to see the turn score and score board? y or n");
+		boolean showscore = 'y' == wantsToDisplayStr.toLowerCase().charAt(0);
+		
+		return showscore;
+	}
+	
 //	display a turn result
 	public void displayTurnResult(boolean value)
 	{
-		ui.println("End of turn for " + playerNames[activePlayerIndex]);
+		
 		ui.println("Score for this turn is " + activePlayer.getTurnScore() + ", added to...");
 		ui.println("Previous round score of " + activePlayer.getRoundScore());
 		activePlayer.setRoundScore(activePlayer.getRoundScore() + activePlayer.getTurnScore());
@@ -151,8 +160,15 @@ public class Game {
 
 			}
 
-			// Calling display turn result
-			displayTurnResult(gameNotOver);
+			ui.println("End of turn for " + playerNames[activePlayerIndex]);
+			
+			boolean showScore = showScore();
+			
+			if (showScore == true) {
+				// display turn result and score board
+				displayTurnResult(gameNotOver);
+			}
+			
 		}
 
 		ui.println("Last turn for all...");
