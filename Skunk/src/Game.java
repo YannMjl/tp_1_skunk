@@ -96,6 +96,7 @@ public class Game {
 			ui.println(playerNames[i] + " ---- " + players.get(i).turnScore + " ---- " + players.get(i).roundScore
 					+ " ---- " + players.get(i).getNumberChips());
 		}
+		
 		ui.println("______________________________________________\n");
 
 		ui.println("Turn passes to right...");
@@ -167,6 +168,12 @@ public class Game {
 			if (showScore == true) {
 				// display turn result and score board
 				displayTurnResult(gameNotOver);
+			} else {
+				ui.println("Turn passes to right...");
+				ui.println("______________________________________________\n");
+
+				activePlayerIndex = (activePlayerIndex + 1) % numberOfPlayers;
+				activePlayer = players.get(activePlayerIndex);
 			}
 			
 		}
