@@ -55,6 +55,16 @@ public class Game {
 		}
 	}
 	
+//  get player response to play or not
+	public boolean getPlayerChoice()
+	{
+		String wantsToRollStr = ui.promptReadAndReturn("Would you like to roll the dice? y or n");
+		boolean wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
+		
+		return wantsToRoll;
+
+	}
+	
 //	display a turn result
 	public void displayTurnResult(boolean value)
 	{
@@ -100,9 +110,12 @@ public class Game {
 		boolean gameNotOver = true;
 
 		while (gameNotOver) {
+			
 			ui.println("Next player is: " + playerNames[activePlayerIndex] + ".");
-			String wantsToRollStr = ui.promptReadAndReturn("Would you like to roll? [true or false]");
-			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+			
+			// get player choice to roll dice or not
+			boolean wantsToRoll = getPlayerChoice();
+			
 			activePlayer.setTurnScore(0);
 
 			while (wantsToRoll) {
@@ -133,8 +146,8 @@ public class Game {
 				ui.println(
 						"Roll of " + skunkDice.toString() + ", gives new turn score of " + activePlayer.getTurnScore());
 
-				wantsToRollStr = ui.promptReadAndReturn("Roll again? [true or false]");
-				wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+				// get player choice to roll dice or not
+				wantsToRoll = getPlayerChoice();
 
 			}
 
@@ -148,8 +161,8 @@ public class Game {
 			ui.println("Last round for player " + playerNames[activePlayerIndex] + "...");
 			activePlayer.setTurnScore(0);
 
-			String wantsToRollStr = ui.promptReadAndReturn("Roll? [true or false]");
-			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+			// get player choice to roll dice or not
+			boolean wantsToRoll = getPlayerChoice();
 
 			while (wantsToRoll) {
 				skunkDice.roll();
@@ -186,8 +199,8 @@ public class Game {
 					}
 					ui.println("-----------------------");
 
-					wantsToRollStr = ui.promptReadAndReturn("Roll again? [true or false]");
-					wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+					// get player choice to roll dice or not
+					wantsToRoll = getPlayerChoice();
 				}
 
 			}
