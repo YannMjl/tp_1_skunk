@@ -54,6 +54,37 @@ public class Game {
 			this.players.add(new Player(50));
 		}
 	}
+	
+//	display a turn result
+	public void displayTurnResult(boolean value)
+	{
+		ui.println("End of turn for " + playerNames[activePlayerIndex]);
+		ui.println("Score for this turn is " + activePlayer.getTurnScore() + ", added to...");
+		ui.println("Previous round score of " + activePlayer.getRoundScore());
+		activePlayer.setRoundScore(activePlayer.getRoundScore() + activePlayer.getTurnScore());
+		ui.println("Giving new round score of " + activePlayer.getRoundScore());
+
+		ui.println("");
+		if (activePlayer.getRoundScore() >= 100)
+			value = false;
+
+		ui.println("Scoreboard: ");
+		ui.println("kitty has " + kitty);
+		ui.println("player name - turn score - round score - chips");
+		ui.println("______________________________________________\n");
+
+		for (int i = 0; i < numberOfPlayers; i++) {
+			ui.println(playerNames[i] + " ---- " + players.get(i).turnScore + " ---- " + players.get(i).roundScore
+					+ " ---- " + players.get(i).getNumberChips());
+		}
+		ui.println("______________________________________________\n");
+
+		ui.println("Turn passes to right...");
+
+		activePlayerIndex = (activePlayerIndex + 1) % numberOfPlayers;
+		activePlayer = players.get(activePlayerIndex);
+
+	}
 
 	public boolean run() {
 		ui.println("\n Welcome to Skunk App Game!");
@@ -70,7 +101,7 @@ public class Game {
 
 		while (gameNotOver) {
 			ui.println("Next player is: " + playerNames[activePlayerIndex] + ".");
-			String wantsToRollStr = ui.promptReadAndReturn("Roll? [true or false]");
+			String wantsToRollStr = ui.promptReadAndReturn("Would you like to roll? [true or false]");
 			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
 			activePlayer.setTurnScore(0);
 
@@ -107,32 +138,8 @@ public class Game {
 
 			}
 
-			ui.println("End of turn for " + playerNames[activePlayerIndex]);
-			ui.println("Score for this turn is " + activePlayer.getTurnScore() + ", added to...");
-			ui.println("Previous round score of " + activePlayer.getRoundScore());
-			activePlayer.setRoundScore(activePlayer.getRoundScore() + activePlayer.getTurnScore());
-			ui.println("Giving new round score of " + activePlayer.getRoundScore());
-
-			ui.println("");
-			if (activePlayer.getRoundScore() >= 100)
-				gameNotOver = false;
-
-			ui.println("Scoreboard: ");
-			ui.println("kitty has " + kitty);
-			ui.println("player name - turn score - round score - chips");
-			ui.println("______________________________________________\n");
-
-			for (int i = 0; i < numberOfPlayers; i++) {
-				ui.println(playerNames[i] + " ---- " + players.get(i).turnScore + " ---- " + players.get(i).roundScore
-						+ " ---- " + players.get(i).getNumberChips());
-			}
-			ui.println("______________________________________________\n");
-
-			ui.println("Turn passes to right...");
-
-			activePlayerIndex = (activePlayerIndex + 1) % numberOfPlayers;
-			activePlayer = players.get(activePlayerIndex);
-
+			// Calling display turn result
+			displayTurnResult(gameNotOver);
 		}
 
 		ui.println("Last turn for all...");

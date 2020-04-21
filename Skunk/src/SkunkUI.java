@@ -10,7 +10,7 @@ public class SkunkUI implements UI {
 	}
 
 	public String promptReadAndReturn(String question) {
-		StdOut.print(question + " -> ");
+		StdOut.print(question + " --> ");
 		String result = StdIn.readLine();
 		return result;
 	}
