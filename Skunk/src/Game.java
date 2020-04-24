@@ -54,6 +54,86 @@ public class Game {
 			this.players.add(new Player(50));
 		}
 	}
+	
+//  get player choice to roll the dice or not
+	public boolean getPlayerChoice()
+	{
+		String wantsToRollStr = ui.promptReadAndReturn("Would you like to roll the dice? y or n");
+		boolean wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
+		
+		return wantsToRoll;
+
+	}
+	
+//  get player choice to display turn score and score board
+	public boolean showScore()
+	{
+		String wantsToDisplayStr = ui.promptReadAndReturn("Show the turn score and score board? y or n");
+		boolean showscore = 'y' == wantsToDisplayStr.toLowerCase().charAt(0);
+		
+		return showscore;
+	}
+	
+//	display a turn result
+	public void displayTurnResult(boolean value)
+	{
+		
+		ui.println("Score for this turn is " + activePlayer.getTurnScore() + ", added to...");
+		ui.println("Previous round score of " + activePlayer.getRoundScore());
+		activePlayer.setRoundScore(activePlayer.getRoundScore() + activePlayer.getTurnScore());
+		ui.println("Giving new round score of " + activePlayer.getRoundScore());
+
+		ui.println("");
+		if (activePlayer.getRoundScore() >= 100)
+			value = false;
+
+		ui.println("Scoreboard: ");
+		ui.println("kitty has " + kitty);
+		ui.println("player name - turn score - round score - chips");
+		ui.println("______________________________________________\n");
+
+		for (int i = 0; i < numberOfPlayers; i++) {
+			ui.println(playerNames[i] + " ---- " + players.get(i).turnScore + " ---- " + players.get(i).roundScore
+					+ " ---- " + players.get(i).getNumberChips());
+		}
+		
+		ui.println("______________________________________________\n");
+
+		ui.println("Turn passes to right...");
+
+		activePlayerIndex = (activePlayerIndex + 1) % numberOfPlayers;
+		activePlayer = players.get(activePlayerIndex);
+
+	}
+	
+//	set score roll
+	private void scoreRoll(int chipsLost) {
+		kitty += chipsLost;
+		activePlayer.setNumberChips(activePlayer.getNumberChips() - chipsLost);
+		activePlayer.setTurnScore(0);
+	}
+	
+//	This method process a roll. Which also remove duplicates while looping wantsToRoll
+	public void processRoll(int number, boolean wantsToRoll)
+	{
+		if (number == 2)
+		{
+			ui.println("Two Skunks! You lose the turn, the round score, plus pay 4 chip(s) to the kitty");
+			scoreRoll(4);
+		} 
+		else if (number == 3) 
+		{
+			ui.println("Skunks and Deuce! You lost the turn, the turn score, plus pay 2 chips to the kitty");
+			scoreRoll(2);
+		}
+		else 
+		{
+			ui.println("One Skunk! You lost the turn, the turn score, plus pay 1 chip to the kitty");
+			scoreRoll(1);
+		}
+		
+		wantsToRoll = false;
+	}
 
 	public boolean run() {
 		ui.println("\n Welcome to Skunk App Game!");
@@ -69,70 +149,59 @@ public class Game {
 		boolean gameNotOver = true;
 
 		while (gameNotOver) {
+			
 			ui.println("Next player is: " + playerNames[activePlayerIndex] + ".");
-			String wantsToRollStr = ui.promptReadAndReturn("Roll? [true or false]");
-			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+			
+			// get player choice to roll dice or not
+			boolean wantsToRoll = getPlayerChoice();
+			
 			activePlayer.setTurnScore(0);
 
 			while (wantsToRoll) {
 				activePlayer.setRollScore(0);
 				skunkDice.roll();
-				if (skunkDice.getLastRoll() == 2) {
-					ui.println("Two Skunks! You lost the turn, the round score, plus pay 4 chips to the kitty");
-					scoreRoll(4);
-					wantsToRoll = false;
+				
+				if (skunkDice.getLastRoll() == 2) 
+				{
+					this.processRoll(2, wantsToRoll);
+					activePlayer.setRoundScore(0);
 					break;
-				} else if (skunkDice.getLastRoll() == 3) {
-					ui.println("Skunks and Deuce! You lost the turn, the turn score, plus pay 2 chips to the kitty");
-					scoreRoll(3);
-					wantsToRoll = false;
+				} 
+				else if (skunkDice.getLastRoll() == 3) 
+				{
+					this.processRoll(3, wantsToRoll);
 					break;
-				} else if (skunkDice.getDie1().getLastRoll() == 1 || skunkDice.getDie2().getLastRoll() == 1) {
-					ui.println("One Skunk! You lost the turn, the turn score, plus pay 1 chip to the kitty");
-					kitty += 1;
-					activePlayer.setNumberChips(activePlayer.getNumberChips() - 1);
-					activePlayer.setTurnScore(0);
-					wantsToRoll = false;
+				} 
+				else if (skunkDice.getDie1().getLastRoll() == 1 || skunkDice.getDie2().getLastRoll() == 1) 
+				{
+					this.processRoll(1, wantsToRoll);
 					break;
-
 				}
 
 				activePlayer.setRollScore(skunkDice.getLastRoll());
 				activePlayer.setTurnScore(activePlayer.getTurnScore() + skunkDice.getLastRoll());
-				ui.println(
-						"Roll of " + skunkDice.toString() + ", gives new turn score of " + activePlayer.getTurnScore());
+				ui.println("Roll of " + skunkDice.toString() + ", gives new turn score of " + activePlayer.getTurnScore());
 
-				wantsToRollStr = ui.promptReadAndReturn("Roll again? [true or false]");
-				wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+				// get player choice to roll dice or not
+				wantsToRoll = getPlayerChoice();
 
 			}
 
 			ui.println("End of turn for " + playerNames[activePlayerIndex]);
-			ui.println("Score for this turn is " + activePlayer.getTurnScore() + ", added to...");
-			ui.println("Previous round score of " + activePlayer.getRoundScore());
-			activePlayer.setRoundScore(activePlayer.getRoundScore() + activePlayer.getTurnScore());
-			ui.println("Giving new round score of " + activePlayer.getRoundScore());
+			
+			boolean showScore = showScore();
+			
+			if (showScore == true) {
+				// display turn result and score board
+				displayTurnResult(gameNotOver);
+			} else {
+				ui.println("Turn passes to right...");
+				ui.println("______________________________________________\n");
 
-			ui.println("");
-			if (activePlayer.getRoundScore() >= 100)
-				gameNotOver = false;
-
-			ui.println("Scoreboard: ");
-			ui.println("kitty has " + kitty);
-			ui.println("player name - turn score - round score - chips");
-			ui.println("______________________________________________\n");
-
-			for (int i = 0; i < numberOfPlayers; i++) {
-				ui.println(playerNames[i] + " ---- " + players.get(i).turnScore + " ---- " + players.get(i).roundScore
-						+ " ---- " + players.get(i).getNumberChips());
+				activePlayerIndex = (activePlayerIndex + 1) % numberOfPlayers;
+				activePlayer = players.get(activePlayerIndex);
 			}
-			ui.println("______________________________________________\n");
-
-			ui.println("Turn passes to right...");
-
-			activePlayerIndex = (activePlayerIndex + 1) % numberOfPlayers;
-			activePlayer = players.get(activePlayerIndex);
-
+			
 		}
 
 		ui.println("Last turn for all...");
@@ -141,31 +210,32 @@ public class Game {
 			ui.println("Last round for player " + playerNames[activePlayerIndex] + "...");
 			activePlayer.setTurnScore(0);
 
-			String wantsToRollStr = ui.promptReadAndReturn("Roll? [true or false]");
-			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+			// get player choice to roll dice or not
+			boolean wantsToRoll = getPlayerChoice();
 
 			while (wantsToRoll) {
 				skunkDice.roll();
 				ui.println("Roll is " + skunkDice.toString() + "\n");
 
-				if (skunkDice.getLastRoll() == 2) {
-					ui.println("Two Skunks! You lost the turn, the turn score, plus pay 4 chips to the kitty");
-					scoreRoll(4);
-					wantsToRoll = false;
+				if (skunkDice.getLastRoll() == 2) 
+				{
+					this.processRoll(2, wantsToRoll);
 					break;
-				} else if (skunkDice.getLastRoll() == 3) {
-					ui.println("Skunks and Deuce! You lost the turn, the turn score, plus pay 2 chips to the kitty");
-					scoreRoll(1);
-					wantsToRoll = false;
+				} 
+				else if (skunkDice.getLastRoll() == 3) 
+				{
+					this.processRoll(3, wantsToRoll);
 
-				} else if (skunkDice.getDie1().getLastRoll() == 1 || skunkDice.getDie2().getLastRoll() == 1) {
-					ui.println("One Skunk! You lost the turn, the turn core, plus pay 1 chip to the kitty");
-					scoreRoll(1);
-					wantsToRoll = false;
-				} else {
+				} 
+				else if (skunkDice.getDie1().getLastRoll() == 1 || skunkDice.getDie2().getLastRoll() == 1) 
+				{
+					this.processRoll(3, wantsToRoll);
+					activePlayer.setRoundScore(0);
+				} 
+				else 
+				{
 					activePlayer.setTurnScore(activePlayer.getRollScore() + skunkDice.getLastRoll());
-					ui.println("Roll of " + skunkDice.toString() + ", giving new turn score of "
-							+ activePlayer.getTurnScore());
+					ui.println("Roll of " + skunkDice.toString() + ", giving new turn score of " + activePlayer.getTurnScore());
 
 					ui.println("Scoreboard: ");
 					ui.println("kitty has: " + kitty);
@@ -179,8 +249,8 @@ public class Game {
 					}
 					ui.println("-----------------------");
 
-					wantsToRollStr = ui.promptReadAndReturn("Roll again? [true or false]");
-					wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+					// get player choice to roll dice or not
+					wantsToRoll = getPlayerChoice();
 				}
 
 			}
@@ -220,10 +290,4 @@ public class Game {
 		return true;
 	}
 
-	private void scoreRoll(int chipsLost) {
-		kitty += 4;
-		activePlayer.setNumberChips(activePlayer.getNumberChips() - 4);
-		activePlayer.setTurnScore(0);
-		activePlayer.setRoundScore(0);
-	}
 }
